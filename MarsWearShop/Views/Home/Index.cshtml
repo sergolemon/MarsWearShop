@@ -1,0 +1,9 @@
+﻿@{ 
+    ViewBag.Title = "Главная Mars Wear Shop";
+}
+
+@model IEnumerable<ProductCardVM>
+
+<div id="main-page" class="container">
+    @await Html.PartialAsync("_ProductsList", Model)
+</div>

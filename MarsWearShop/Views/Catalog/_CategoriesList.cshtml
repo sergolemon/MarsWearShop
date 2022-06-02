@@ -1,0 +1,14 @@
+﻿@model IEnumerable<CategoryVM>
+
+@if (Model.Any())
+{
+    <div class="categories-box">
+        <span class="header-font">категории</span><br />
+        <div class="categories-container">
+                @foreach (var item in Model)
+                {
+                    <a class="category header-font" href="@Context.Request.Path/@item.Link">@item.Name</a>
+                }
+        </div>
+    </div>
+}

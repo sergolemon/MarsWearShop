@@ -1,0 +1,32 @@
+﻿<header>
+    <div class="content">
+        <div class="header menu-toggler-box">
+            <button onclick="toggleMenu()">
+                <div class="line first"></div>
+                <div class="line middle"></div>
+                <div class="line last"></div>
+            </button>
+        </div>
+        <div class="header logo-box">
+            <a href="/">
+                <img id="logo" src="~/img/logo.png" alt="logo" />
+            </a>
+        </div>
+        <div class="header account-box">
+            <button onclick="openForm()">
+                <img class="icon" src="~/icon/user.png" alt="account" />
+            </button>
+        </div>
+        <div class="header cart-box">
+            <button onclick="OpenCart()">
+                <img class="icon" src="~/icon/cart.png" alt="cart" />
+                <div class="content">
+                    <span class="header-font cart-items-count">@await Component.InvokeAsync("CartItemsCount")</span>
+                </div>
+            </button>
+        </div>
+        <div class="header contact-box">
+            <span class="header-font">тел: (380)-95-32-43-078</span>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ProductCardVM>
+
+@if (!Model.Any())
+{
+    @await Html.PartialAsync("_PageMsg", "Товары не найдены.")
+}
+else
+{
+    <div class="products-list">
+        @foreach (var item in Model)
+        {
+            <div class="product-card">
+                <div class="top-box">
+                    <div class="sizes-box @if (item.Sizes.Any(x => x == "NoSize"))@("hide")">
+                        @for (int i = 0; i < item.Sizes.Length; i++)
+                        {
+                            <label>
+                                <input class="size-btn" name="@item.Id" value="@item.Sizes[i]" type="radio" @if (i == 0)@("checked") />
+                                <span>@item.Sizes[i]</span>
+                            </label>
+                        }
+                    </div>
+                    <a class="img-box" href="/catalog/product/@item.Id">
+                        @if (item.IsDiscount)
+                        {
+                            <div class="discount-attribute header-font">
+                                <span>-@item.DiscountProcent%</span>
+                            </div>
+                        }
+                        <img onmouseover="getAdditionalImg(event)" onmouseout="getTitleImg(event)" src="data:image/jpeg;base64,@(Convert.ToBase64String(item.TitleImg))" data-additional="data:image/jpeg;base64,@(Convert.ToBase64String(item.AdditionalImg))" />
+                    </a>
+                    <div class="to-cart-result header-font" onclick="hideThis(event)">добавлено:&nbsp;<span></span></div>
+                </div>
+                <div class="info-box">
+                    <a href="/catalog/product/@item.Id">
+                        <div class="name">@item.Name</div>
+                        <div class="price header-font">
+                            @if (item.IsDiscount)
+                            {
+                                <s>₴ @item.FullPrice.ToString("F2")</s>
+                            }
+                            <span>₴ @item.CurrPrice.ToString("F2")</span>
+                        </div>
+                    </a>
+                </div>
+                <button class="in-cart-btn header-font" data-prod-id="@item.Id" onclick="AddToCartItem(event)">в корзину</button>
+            </div>
+        }
+    </div>
+}

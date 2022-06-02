@@ -1,0 +1,28 @@
+﻿<nav>
+    <div class="content">
+        <div class="nav first">
+            <div class="account-box">
+                <button class="account-btn" onclick="openForm()">
+                    <img class="icon" src="~/icon/user.png" alt="account" />
+                </button>
+            </div>
+        </div>
+        <div class="nav catalog-box">
+            <a href="/catalog"></a>
+            <div class="content">
+                <span class="header-font">каталог</span><button class="catalog-toggler" onclick="toggleCategories()"><img src="~/icon/openlist.png" /></button>
+            </div>
+            @await Component.InvokeAsync("MainCategories")
+        </div>
+        <div class="nav">
+            <a class="header-font" href="/discount">акции</a>
+        </div>
+        <div class="nav">
+            <a class="header-font" href="">оплата и доставка</a>
+        </div>
+        <div class="nav">
+            <a class="header-font" href="/about">о нас</a>
+        </div>
+    </div>
+</nav>
+<div id="nav-shadow-box" onclick="toggleMenu()"></div>

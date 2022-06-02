@@ -1,0 +1,17 @@
+﻿@model IEnumerable<ProductCardVM>
+
+@{ 
+    ViewBag.Title = "Акции Mars Wear Shop";
+}
+
+<div id="discount-page" class="container">
+    @if (Model.Any())
+    {
+        @await Html.PartialAsync("_ProductsList", Model)
+        @await Html.PartialAsync("_ShowMore")
+    }
+    else
+    {
+        @await Html.PartialAsync("_PageMsg", "Не найдено действительных акций.")
+    }
+</div>

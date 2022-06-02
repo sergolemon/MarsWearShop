@@ -1,0 +1,24 @@
+﻿@model IEnumerable<CartItemVM>
+
+<div id="cart-background" onclick="CloseCart()"></div>
+<div id="cart">
+    <div class="top">
+        <button onclick="CloseCart()">
+            <img src="~/icon/close.png" />
+        </button>
+    </div>
+    <div class="cart-items-box">
+        <p align="center" class="cart-msg header-font">ваша корзина пуста</p>
+        @foreach (CartItemVM item in Model)
+        {
+            @await Html.PartialAsync("_CartItem", item)
+        }
+    </div>
+    <div class="bottom">
+        <div class="total-price-box header-font">итого:&emsp;₴ <span class="total-price"></span></div>
+        <div class="buttons-box">
+            <a class="btn header-font">заказать</a>
+            <button class="btn header-font clear-cart" onclick="ClearCart()">очистить</button>
+        </div>
+    </div>
+</div>

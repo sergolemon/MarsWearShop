@@ -1,0 +1,31 @@
+﻿@model CartItemVM
+
+<div class="cart-item" data-prodId="@Model.ProductId">
+    <img src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.Img))" />
+    <div class="data">
+        <div class="name"><a class="header-font" href="/catalog/product/@Model.ProductId">@Model.Name</a></div>
+        <div class="options">
+            <div class="size header-font">
+                <span @if (Model.Size == "NoSize")@("style=display:none") >@Model.Size</span>
+            </div>
+            <div class="count">
+                <div class="num-container">
+                    <button onclick="CartItemMinus(event)" value="@Model.Id">&#8722;</button>
+                    <span data-max-count="@Model.MaxCount" class="count header-font">@Model.Count</span>
+                    <button onclick="CartItemPlus(event)" value="@Model.Id">&#43;</button>
+                </div>
+            </div>
+            <div class="delete-btn-box">
+                <button onclick="CartItemDelete(event)" value="@Model.Id">
+                    <img src="~/icon/close.png" />
+                </button>
+            </div>
+        </div>
+        <div class="price header-font">
+            ₴<span data-price="@Model.Price" class="item-sum"></span>
+        </div>
+        <div>
+            <small class="num-in-stock" @if (Model.MaxCount < Model.Count)@("style=color:red") >В наличии: @Model.MaxCount</small>
+        </div>
+    </div>
+</div>

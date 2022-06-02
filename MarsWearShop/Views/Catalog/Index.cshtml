@@ -1,0 +1,18 @@
+﻿@model CatalogVM
+
+@{
+    ViewBag.Title = "Каталог Mars Wear Shop";
+}
+
+<div id="catalog" class="container">
+    @if (Model.Products.Any())
+    {
+        @await Html.PartialAsync("_CategoriesList", Model.Categories);
+        @await Html.PartialAsync("_ProductsList", Model.Products);
+        @await Html.PartialAsync("_ShowMore");
+    }
+    else
+    {
+        @await Html.PartialAsync("_PageMsg", "Продукты не найдены.");
+    }
+</div>
